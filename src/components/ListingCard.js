@@ -1,24 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 
-function ListingCard() {
+function ListingCard({ listing, onDeleteListing }) {
+  const { id, description, image, location } = listing
+  const [fav, setFav] = useState(false);
+
+  function handleFav() {
+    setFav(!fav)
+  }
+
+  function handleDeleteClick() {
+    fetch(`http://localhost:6001/listings/${id}`, {
+      method: "DELETE",
+    })
+    onDeleteListing(id)
+
+  }
+
   return (
-    <li className="card">
-      <div className="image">
-        <span className="price">$0</span>
-        <img src={"https://via.placeholder.com/300x300"} alt={"description"} />
-      </div>
-      <div className="details">
-        {true ? (
-          <button className="emoji-button favorite active">★</button>
-        ) : (
-          <button className="emoji-button favorite">☆</button>
-        )}
-        <strong>{"description"}</strong>
-        <span> · {"location"}</span>
-        <button className="emoji-button delete">🗑</button>
-      </div>
-    </li>
+
+    <div className="">
+      <li className="card">
+        <div className="image">
+          <span className="price">$0</span>
+          <img src={image} alt={description} />
+        </div>
+
+        <div className="details">
+          {fav ? (
+            <button className="emoji-button favorite active"
+              onClick={handleFav}
+            >★</button>
+          ) : (
+            <button className="emoji-button favorite"
+              onClick={handleFav}
+            >☆</button>
+          )}
+
+          <strong>{description}</strong>
+          <span> · {location}</span>
+          <button className="emoji-button delete"
+            onClick={handleDeleteClick}
+          >🗑</button>
+        </div>
+      </li>
+    </div>
   );
 }
 
 export default ListingCard;
+
+// when user clicks favorite 
+// change star to active
+// when user clicks favorite star again
+// change star to no fill /deactive 
+
+// we need a condition
+// we need an event handler
+// we need to change state 
+// we do not need useEffect
