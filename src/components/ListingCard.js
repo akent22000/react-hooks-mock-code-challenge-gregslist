@@ -48,13 +48,3 @@ function ListingCard({ listing, onDeleteListing }) {
 }
 
 export default ListingCard;
-
-// when user clicks favorite 
-// change star to active
-// when user clicks favorite star again
-// change star to no fill /deactive 
-
-// we need a condition
-// we need an event handler
-// we need to change state 
-// we do not need useEffect

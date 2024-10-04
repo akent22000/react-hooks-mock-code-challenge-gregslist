@@ -6,8 +6,6 @@ function ListingsContainer({ listings, onDeleteListing }) {
 
   return (
     <div className="">
-      <h1>Hello, i'm the card container</h1>
-
       <ul className="cards">
         {listings.map((listing) => (
           <ListingCard
